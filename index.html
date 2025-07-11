@@ -211,6 +211,23 @@
       box-shadow: 0 0 10px #e63946, 0 0 20px #f28b82;
     }
 
+    /* Cantada discreta fixa e brilhante */
+    .indireta {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      max-width: 280px;
+      font-size: 1em;
+      font-style: italic;
+      color: #00e5ffcc;
+      text-shadow: 0 0 8px #00e5ff99;
+      opacity: 1;
+      user-select: none;
+      pointer-events: none;
+      animation: neonPulse 3.5s ease-in-out infinite;
+      z-index: 11;
+    }
+
   </style>
 </head>
 <body>
@@ -225,6 +242,8 @@
 
   <div id="cornerLeft"></div>
   <div id="cornerRight"></div>
+
+  <div class="indireta">Não sei explicar, mas tem algo em você que deixa tudo mais interessante.</div>
 
   <script>
     const cores = ['#fdf5b6', '#b3e5fc', '#6b8e23'];
@@ -312,40 +331,32 @@
     const cornerLeft = document.getElementById('cornerLeft');
     const cornerRight = document.getElementById('cornerRight');
 
-    // Funções paramétricas coração e morango simples (morango estilo gota arredondada)
     function heartCornerShape(t, scale) {
-      // mesmo coração paramétrico, mas escala menor
       const x = scale * 16 * Math.pow(Math.sin(t), 3);
       const y = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
       return { x, y };
     }
 
     function strawberryShape(t, scale) {
-      // Uma forma simples parecida com um morango arredondado (forma de gota com uma leve ondulação)
-      // Fórmula para um coração "morro" mas com pequena ondulação para parecer morango
       const baseX = scale * 16 * Math.pow(Math.sin(t), 3);
       const baseY = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
-      // Pequena ondulação para simular textura de morango
       const wave = 2 * Math.sin(5 * t);
       return { x: baseX + wave, y: baseY };
     }
 
-    // Cria partículas no container do canto
     function criarParticleCorner(container, t, isStrawberry = false) {
       const p = document.createElement('div');
       p.classList.add('corner-particle');
       if (isStrawberry) p.classList.add('morango');
 
-      // Começa numa posição aleatória dentro do container (150x150)
       const startX = Math.random() * 150;
       const startY = Math.random() * 150;
       p.style.left = `${startX}px`;
       p.style.top = `${startY}px`;
       container.appendChild(p);
 
-      // Alvo na forma (coração ou morango)
       const shape = isStrawberry ? strawberryShape(t, 6) : heartCornerShape(t, 6);
-      const targetX = 75 + shape.x; // centro + offset
+      const targetX = 75 + shape.x;
       const targetY = 75 + shape.y;
 
       setTimeout(() => {
@@ -354,7 +365,6 @@
       }, 10);
 
       setTimeout(() => {
-        // leve movimento flutuante
         p.classList.add('floaty');
       }, 2000);
 
@@ -363,15 +373,14 @@
       }, 12000);
     }
 
-    // Anima partículas nos cantos alternando coração e morango
     let angleLeft = 0;
     let angleRight = 0;
 
     function animarCantinho() {
-      criarParticleCorner(cornerLeft, angleLeft, false); // coração
-      criarParticleCorner(cornerLeft, angleLeft + Math.PI / 4, true); // morango
-      criarParticleCorner(cornerRight, angleRight, true); // morango
-      criarParticleCorner(cornerRight, angleRight + Math.PI / 4, false); // coração
+      criarParticleCorner(cornerLeft, angleLeft, false);
+      criarParticleCorner(cornerLeft, angleLeft + Math.PI / 4, true);
+      criarParticleCorner(cornerRight, angleRight, true);
+      criarParticleCorner(cornerRight, angleRight + Math.PI / 4, false);
 
       angleLeft += 0.2;
       if (angleLeft > Math.PI * 2) angleLeft = 0;
