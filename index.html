@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stella 💛💚💙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;700&display=swap" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: radial-gradient(circle, #0f2027, #203a43, #2c5364);
+      font-family: "Poppins", sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      top: -100%;
+      left: -100%;
+      background: conic-gradient(from 0deg, #00e5ff22, #ffffff11, #1de9b622, #00e5ff22);
+      animation: aurora 40s linear infinite;
+      z-index: 0;
+      filter: blur(100px);
+    }
+
+    @keyframes aurora {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .emoji-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .emoji-bg span {
+      position: absolute;
+      font-size: 3rem;
+      animation: floatEmoji 15s linear infinite;
+      opacity: 0.25;
+    }
+    @keyframes floatEmoji {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-200vh) rotate(360deg); }
+    }
+
+    .mensagem {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 3;
+      animation: heartbeat 2s infinite ease-in-out;
+    }
+
+    .mensagem h1 {
+      font-family: "Pacifico", cursive;
+      font-size: 3.5em;
+      color: #00e5ff;
+      text-shadow: 0 0 15px #00e5ff, 0 0 30px #00e5ff;
+    }
+
+    .mensagem p {
+      margin-top: 10px;
+      font-size: 1.3em;
+      color: #ffffffaa;
+      text-shadow: 0 0 5px #1de9b6;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.07); }
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ff4d4d;
+      box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff9999;
+      opacity: 0.8;
+      z-index: 2;
+      transition: left 3s ease-out, top 3s ease-out;
+    }
+
+    .floaty {
+      animation: mosquito 4s infinite ease-in-out alternate;
+    }
+
+    @keyframes mosquito {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(2px, -3px); }
+      50% { transform: translate(-3px, 2px); }
+      75% { transform: translate(3px, 3px); }
+      100% { transform: translate(-2px, -2px); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+      border-radius: 0 50% 50% 50%;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -50%; left: 0; }
+    .heart::after { top: 0; left: -50%; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(0.6) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .assinatura {
+      position: fixed;
+      bottom: 12px;
+      right: 18px;
+      font-family: "Pacifico", cursive;
+      font-size: 1.4em;
+      color: #00e5ff;
+      text-shadow:
+        0 0 5px #00e5ff,
+        0 0 10px #00e5ff,
+        0 0 20px #1de9b6,
+        0 0 30px #1de9b6,
+        0 0 40px #00e5ff,
+        0 0 55px #00e5ff;
+      user-select: none;
+      z-index: 10;
+      pointer-events: none;
+      animation: neonPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes neonPulse {
+      0%, 100% {
+        text-shadow:
+          0 0 5px #00e5ff,
+          0 0 10px #00e5ff,
+          0 0 20px #1de9b6,
+          0 0 30px #1de9b6,
+          0 0 40px #00e5ff,
+          0 0 55px #00e5ff;
+        color: #00e5ff;
+      }
+      50% {
+        text-shadow:
+          0 0 15px #00e5ff,
+          0 0 30px #00e5ff,
+          0 0 50px #1de9b6,
+          0 0 70px #1de9b6,
+          0 0 90px #00e5ff,
+          0 0 110px #00e5ff;
+        color: #1de9b6;
+      }
+    }
+
+    /* Canto esquerdo e direito - container de partículas */
+    #cornerLeft, #cornerRight {
+      position: fixed;
+      top: 0;
+      width: 150px;
+      height: 150px;
+      pointer-events: none;
+      z-index: 4;
+      overflow: visible;
+    }
+    #cornerLeft { left: 0; }
+    #cornerRight { right: 0; }
+
+    .corner-particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ff4d4d;
+      box-shadow: 0 0 8px #ff4d4d, 0 0 15px #ff9999;
+      opacity: 0.9;
+      transition: left 1.5s ease-out, top 1.5s ease-out;
+    }
+    .corner-particle.morango {
+      background: #e63946;
+      box-shadow: 0 0 10px #e63946, 0 0 20px #f28b82;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="emoji-bg" id="emojis"></div>
+
+  <div class="mensagem">
+    <h1>Para minha amiguinha loira Stella 💛</h1>
+    <p>
+      A gente se conheceu lá no sexto ano, mas não éramos tão próximos. Hoje, me sinto grato por ter te reencontrado e criado uma conexão tão especial. Você é uma amiga incrível, Stella. Gosto muito de você! 💚💙
+    </p>
+  </div>
+
+  <div id="cornerLeft"></div>
+  <div id="cornerRight"></div>
+
+  <script>
+    const cores = ['#fdf5b6', '#b3e5fc', '#6b8e23'];
+    const emojis = document.getElementById("emojis");
+
+    // Morangos flutuantes no fundo
+    for (let i = 0; i < 25; i++) {
+      const e = document.createElement("span");
+      e.innerText = "🍓";
+      e.style.left = Math.random() * 100 + "vw";
+      e.style.top = Math.random() * 100 + "vh";
+      e.style.animationDelay = (Math.random() * 20) + "s";
+      e.style.fontSize = '3rem';
+      e.style.opacity = 0.25;
+      emojis.appendChild(e);
+    }
+
+    // Coração fórmula paramétrica
+    function heartShape(t, scale) {
+      const x = scale * 16 * Math.pow(Math.sin(t), 3);
+      const y = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+      return { x, y };
+    }
+
+    // Partículas para o coração central
+    const particles = [];
+    const maxParticles = 250;
+    let t = 0;
+
+    function criarParticula(t) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+
+      const startX = Math.random() * window.innerWidth;
+      const startY = Math.random() * window.innerHeight;
+      p.style.left = `${startX}px`;
+      p.style.top = `${startY}px`;
+      document.body.appendChild(p);
+
+      const { x, y } = heartShape(t, 10);
+      const targetX = window.innerWidth / 2 + x;
+      const targetY = window.innerHeight / 2 + y;
+
+      setTimeout(() => {
+        p.style.left = `${targetX}px`;
+        p.style.top = `${targetY}px`;
+      }, 10);
+
+      setTimeout(() => p.classList.add('floaty'), 3100);
+      setTimeout(() => p.remove(), 20000);
+      particles.push(p);
+    }
+
+    function animarParticulas() {
+      criarParticula(t);
+      t += 0.1;
+      if (t >= Math.PI * 2) t = 0;
+      if (particles.length < maxParticles) {
+        setTimeout(animarParticulas, 50);
+      }
+    }
+
+    animarParticulas();
+
+    // Corações flutuantes coloridos do fundo
+    function criarCoracaoFlutuante() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.bottom = '-30px';
+      const cor = cores[Math.floor(Math.random() * cores.length)];
+      heart.style.backgroundColor = cor;
+      heart.style.animationDuration = 3 + Math.random() * 3 + 's';
+      heart.style.width = heart.style.height = 16 + Math.random() * 12 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(criarCoracaoFlutuante, 130);
+
+    // -------------------
+    // Animação partículas nos cantos (coração e morango)
+    // -------------------
+
+    const cornerLeft = document.getElementById('cornerLeft');
+    const cornerRight = document.getElementById('cornerRight');
+
+    // Funções paramétricas coração e morango simples (morango estilo gota arredondada)
+    function heartCornerShape(t, scale) {
+      // mesmo coração paramétrico, mas escala menor
+      const x = scale * 16 * Math.pow(Math.sin(t), 3);
+      const y = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+      return { x, y };
+    }
+
+    function strawberryShape(t, scale) {
+      // Uma forma simples parecida com um morango arredondado (forma de gota com uma leve ondulação)
+      // Fórmula para um coração "morro" mas com pequena ondulação para parecer morango
+      const baseX = scale * 16 * Math.pow(Math.sin(t), 3);
+      const baseY = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+      // Pequena ondulação para simular textura de morango
+      const wave = 2 * Math.sin(5 * t);
+      return { x: baseX + wave, y: baseY };
+    }
+
+    // Cria partículas no container do canto
+    function criarParticleCorner(container, t, isStrawberry = false) {
+      const p = document.createElement('div');
+      p.classList.add('corner-particle');
+      if (isStrawberry) p.classList.add('morango');
+
+      // Começa numa posição aleatória dentro do container (150x150)
+      const startX = Math.random() * 150;
+      const startY = Math.random() * 150;
+      p.style.left = `${startX}px`;
+      p.style.top = `${startY}px`;
+      container.appendChild(p);
+
+      // Alvo na forma (coração ou morango)
+      const shape = isStrawberry ? strawberryShape(t, 6) : heartCornerShape(t, 6);
+      const targetX = 75 + shape.x; // centro + offset
+      const targetY = 75 + shape.y;
+
+      setTimeout(() => {
+        p.style.left = `${targetX}px`;
+        p.style.top = `${targetY}px`;
+      }, 10);
+
+      setTimeout(() => {
+        // leve movimento flutuante
+        p.classList.add('floaty');
+      }, 2000);
+
+      setTimeout(() => {
+        container.removeChild(p);
+      }, 12000);
+    }
+
+    // Anima partículas nos cantos alternando coração e morango
+    let angleLeft = 0;
+    let angleRight = 0;
+
+    function animarCantinho() {
+      criarParticleCorner(cornerLeft, angleLeft, false); // coração
+      criarParticleCorner(cornerLeft, angleLeft + Math.PI / 4, true); // morango
+      criarParticleCorner(cornerRight, angleRight, true); // morango
+      criarParticleCorner(cornerRight, angleRight + Math.PI / 4, false); // coração
+
+      angleLeft += 0.2;
+      if (angleLeft > Math.PI * 2) angleLeft = 0;
+      angleRight += 0.2;
+      if (angleRight > Math.PI * 2) angleRight = 0;
+
+      setTimeout(animarCantinho, 300);
+    }
+
+    animarCantinho();
+
+  </script>
+
+  <div class="assinatura">Sonic Lobisomen</div>
+</body>
+</html>
